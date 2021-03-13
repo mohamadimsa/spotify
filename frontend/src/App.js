@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import {HashRouter, Route, Switch} from 'react-router-dom'
-import Album from './components/album/Album';
-import Homepage from './components/Homepage';
+import Album from './pages/album/Album';
+import Homepage from './pages/Homepage';
 
 
 function App() {
