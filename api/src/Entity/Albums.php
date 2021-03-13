@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Elasticsearch\DataProvider\Filter\OrderFilter;
 
 /**
  * Albums
@@ -17,6 +20,8 @@ use Doctrine\Common\Collections\Collection;
  *       "get"={},
  *     }
  *)
+ *@ApiFilter(OrderFilter::class, properties={"name" : "asc"})
+ *@ApiFilter(SearchFilter::class, properties={"name": "start"})
  * @ORM\Table(name="albums", indexes={@ORM\Index(name="albums_artist_id", columns={"artist_id"})})
  * @ORM\Entity
  */
