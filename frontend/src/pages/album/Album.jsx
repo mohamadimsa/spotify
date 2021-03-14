@@ -33,7 +33,7 @@ class Album extends Component{
             <div key={album}>
                <Link to={`/album/${album.id}`}>
                   <h3>{album.name}</h3>
-                  <p><img src={album.coverSmall} alt="img cover" />{album.description}</p>
+                  <img src={album.coverSmall} alt="img cover" />
                </Link>
             </div>
          )
@@ -44,7 +44,6 @@ class Album extends Component{
       return (
          <div>
             <h1>Album</h1>
-            <p>Hello world</p>
             <div>{this.renderAlbum()}</div>
          </div>
       )
