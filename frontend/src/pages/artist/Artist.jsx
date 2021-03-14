@@ -30,10 +30,10 @@ class Artist extends Component{
    renderArtist(){
       return this.state.artists.map((artist) => {
          return (
-            <div key={artist}>
+            <div key={artist} className="info_artist">
                <Link to={`/artist?id=${artist.id}`}>
                   <h3>{artist.name}</h3>
-                  <p><img src={artist.photo} alt="photo artist" /></p>
+                  <img className="image_artist" src={artist.photo} alt="photo artist" />
                </Link>
             </div>
          )
@@ -42,8 +42,8 @@ class Artist extends Component{
 
    render() {
       return (
-         <div>
-            <h1>Artist</h1>
+         <div className="pageArtist">
+            <h1>Liste des artiste disponibles dans la plateforme</h1> 
            
             <div>{this.renderArtist()}</div>
          </div>
