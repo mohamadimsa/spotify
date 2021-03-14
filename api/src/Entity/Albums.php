@@ -22,6 +22,7 @@ use ApiPlatform\Core\Bridge\Elasticsearch\DataProvider\Filter\OrderFilter;
  *)
  *@ApiFilter(OrderFilter::class, properties={"name" : "asc"})
  *@ApiFilter(SearchFilter::class, properties={"name": "start"})
+ *@ApiFilter(SearchFilter::class, properties={"artistId": "exact"})
  * @ORM\Table(name="albums", indexes={@ORM\Index(name="albums_artist_id", columns={"artist_id"})})
  * @ORM\Entity
  */

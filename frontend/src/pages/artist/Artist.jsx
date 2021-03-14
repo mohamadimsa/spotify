@@ -28,6 +28,7 @@ class Artist extends Component{
    }
 
    renderArtist(){
+       
       return this.state.artists.map((artist) => {
          return (
             <div key={artist} className="info_artist">
@@ -42,6 +43,7 @@ class Artist extends Component{
    }
 
    render() {
+     
       return (
          <div className="pageArtist">
             <h1>Liste des artiste disponibles dans la plateforme</h1> 
