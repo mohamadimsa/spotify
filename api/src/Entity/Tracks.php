@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  *       "get"={},
  *     }
  *)
+ *@ApiFilter(SearchFilter::class, properties={"albumId": "exact"})
  * @ORM\Table(name="tracks", uniqueConstraints={@ORM\UniqueConstraint(name="songs_id", columns={"id"})}, indexes={@ORM\Index(name="songs_album_id", columns={"album_id"})})
  * @ORM\Entity
  */
