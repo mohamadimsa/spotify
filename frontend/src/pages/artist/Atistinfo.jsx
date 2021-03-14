@@ -66,6 +66,13 @@ getArtist(id){
               <div className="col">
               <img className="image_artist" src={info.photo} alt="photo artist" />
               </div>
+              <div className="col">
+                 <p>nom : {info.name}</p>
+                 <p>nom : {info.bio}</p>
+              </div>
+              <div className="row">
+                 <p>{info.description}</p>
+              </div>
             </div>
          )
    
