@@ -6,7 +6,9 @@ class Album extends Component{
    constructor(){
       super();
       this.state = {
-         albums: []
+         albums: [],
+         page: 1,
+         nb_all: 0
       }
       this.getAlbums();
    }
@@ -20,9 +22,10 @@ class Album extends Component{
    }*/
 
    getAlbums(){
-      axios.get(`http://127.0.0.1:8000/api/albums`).then(res => {
+      axios.get(`http://127.0.0.1:8000/api/albums?page=${this.state.page}`).then(res => {
          return this.setState({
-            albums: res.data["hydra:member"]
+            albums: res.data["hydra:member"],
+            nb_all: res.data["hydra:totalItems"]
          });
       });
    }
@@ -40,10 +43,35 @@ class Album extends Component{
       })
    }
 
+   nextPage(){
+      if (this.state.page < Math.ceil(this.state.nb_all / 15)){
+         let nb_page = this.state.page + 1;
+         this.setState({
+            page: nb_page
+         }, () => {
+            this.getAlbums();
+         })
+      }
+   }
+
+   prevPage(){
+      if (this.state.page > 1){
+         let nb_page = this.state.page - 1;
+         this.setState({
+            page: nb_page
+         }, () => {
+            this.getAlbums();
+         })
+      }
+   }
+
    render() {
       return (
          <div>
             <h1>Album</h1>
+            <p>Nombre d'albums trouvés: {this.state.nb_all}</p>
+            <button onClick={this.prevPage.bind(this)}>Prev</button>
+            <button onClick={this.nextPage.bind(this)}>Next</button>
             <div>{this.renderAlbum()}</div>
          </div>
       )
