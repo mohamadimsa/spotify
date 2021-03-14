@@ -4,6 +4,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import Album from './pages/album/Album';
 import Homepage from './pages/Homepage';
 import Genre from './pages/genre/Genre';
+import GenreVision from './pages/genre/GenreVision';
 
 
 function App() {
@@ -23,9 +24,12 @@ function App() {
         Route exact path = "/genre"
         component = { Genre }
         /> <
-        /Switch> <
-        /div> <
-        /HashRouter>
+        Route exact path = "/genre/:id"
+        component = { GenreVision }
+        /> < /
+        Switch > <
+        /div> < /
+        HashRouter >
     );
 }
 export default App;

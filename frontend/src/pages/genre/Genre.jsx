@@ -1,16 +1,46 @@
-import React from "react";
-import axios from "axios";
-const Genre = (props) => {
+import React, { Component } from "react";
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-axios
-.get('http://127.0.0.1:8001/api/genres')
-.then(response => {
-console.log(response.data["hydra:member"]);
-})
-.catch(err => {console.log(err)})
-return <h1>page genre</h1>
+class Genre extends Component{
+   constructor(){
+      super();
+      this.state = {
+         genre: []
+      }
+      this.getGenre();
+   }
+
+  
+
+   getGenre(){
+      axios.get(`http://127.0.0.1:8001/api/genres`).then(res => {
+         return this.setState({
+            genre: res.data["hydra:member"]
+         });
+      });
+   }
+
+   renderGenre(){
+      return this.state.genre.map((genres) => {
+         return (
+            <div >
+               <Link to={`/genre/${genres.id}`}>
+                  <h3>{genres.name}</h3>
+               </Link>
+            </div>
+         )
+      })
+   }
+
+   render() {
+      return (
+         <div>
+            <h1>Genre</h1>
+            <p>Voici la liste sur des genres</p>
+            <div>{this.renderGenre()}</div>
+         </div>
+      )
+   }
 }
-
-
-
 export default Genre;
