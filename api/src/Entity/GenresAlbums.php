@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  *       "get"={},
  *     }
  *)
- *@ApiFilter(SearchFilter::class, properties={"albumId": "exact"})
+ *@ApiFilter(SearchFilter::class, properties={"genreId": "exact"})
  * @ORM\Table(name="genres_albums", indexes={@ORM\Index(name="genres_albums_album_id", columns={"album_id"}), @ORM\Index(name="genres_albums_genre_id", columns={"genre_id"})})
  * @ORM\Entity
  */
