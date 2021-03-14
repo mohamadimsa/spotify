@@ -37,7 +37,7 @@ class AlbumShow extends Component{
             return (
                <div key={track.id}>
                     <h3>{track.name}</h3>
-                    <audio controls /*onPlay={this.audioPause.bind(this)}*/>
+                    <audio controls onPlay={this.audioPause.bind(this)}>
                         <source src={track.mp3} type="audio/mpeg"/>
                         Your browser does not support the audio element.
                     </audio>
@@ -47,11 +47,8 @@ class AlbumShow extends Component{
     }
 
     audioPause(e){
-        console.log(e)
         const audios = document.querySelectorAll("audio");
-        audios.forEach(element => element.pause());
-        console.log(e.target.play())
-        
+        audios.forEach(element => element === e.currentTarget ? element.play() : element.pause());
     }
 
     render() {
