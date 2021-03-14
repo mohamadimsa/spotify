@@ -13,10 +13,10 @@ class AlbumShow extends Component{
         }
     }
 
-    componentDidMount(){
+    fetchAlbum(){
         axios.get(`http://127.0.0.1:8000/api/albums/${this.state.params}`).then(res => {
             this.setState({
-              album: res.data
+            album: res.data
             });
             axios.get(`http://127.0.0.1:8000/api/artists/${this.state.album.artistId}`).then(res => {
                 this.setState({
@@ -29,6 +29,20 @@ class AlbumShow extends Component{
                 tracks: res.data["hydra:member"]
             });
         });
+    }
+
+    componentDidMount(){
+        this.fetchAlbum();
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(this.props.match.params.id !== prevProps.match.params.id){
+            this.setState({
+                params: this.props.match.params.id
+            }, () => {
+                this.fetchAlbum();
+            }) 
+        }
         
     }
 
