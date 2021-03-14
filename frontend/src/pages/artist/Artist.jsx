@@ -31,10 +31,11 @@ class Artist extends Component{
       return this.state.artists.map((artist) => {
          return (
             <div key={artist} className="info_artist">
-               <Link to={`/artist?id=${artist.id}`}>
+               <Link to={`/artist_info?id=${artist.id}`}>
                   <h3>{artist.name}</h3>
                   <img className="image_artist" src={artist.photo} alt="photo artist" />
                </Link>
+               <p>{artist.description}</p>
             </div>
          )
       })
