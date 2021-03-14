@@ -9,6 +9,7 @@ class GenreVision extends Component{
         this.state = {
            albums: [],
            params: genreId,
+           id_album :[],
            page: 1,
            nb_all:0
         }
@@ -21,16 +22,31 @@ class GenreVision extends Component{
             });
             
         });*/
-        axios.get(`http://127.0.0.1:8000/api/albums?page=${this.state.page}`).then(res => {
+        axios.get(`http://127.0.0.1:8000/api/genres_albums?genreId=${this.state.params}&page=${this.state.page}`).then(res => {
+           let tab_id =[]
+         res.data["hydra:member"].forEach(element => tab_id.push(element.albumId))
+       
             this.setState({
-            albums: res.data["hydra:member"],
+            id_album: tab_id,
             nb_all: res.data["hydra:totalItems"]
             });
         });
     }
+          getAlbum(){
+                 this.state.id_album.forEach(element => {
+                  axios.get(`http://127.0.0.1:8000/api/albums/${element}`).then(res => {
+                        this.setState({
+                        albums: [...this.state.albums,res.data]
+                        });
+                    });
+                 })
+              
+          }
+
 
     componentDidMount(){
         this.fetchGenre();
+        
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -79,6 +95,7 @@ class GenreVision extends Component{
      }
   
      render() {
+        
         return (
            <div>
               <h1>Album</h1>
