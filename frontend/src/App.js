@@ -14,6 +14,7 @@ function App() {
              <Route exact path="/" component={Homepage}/>
              <Route exact path="/album" component={Album}/>
              <Route exact path="/artist" component={Artist}/>
+             <Route  path="/artist?id=" component={Artist}/>
            </Switch>
       </div>
     </HashRouter>
