@@ -83,7 +83,7 @@ getArtist(id){
       return this.state.albums.map((album) => {
          return (
             <div key={album} className="list_album">
-               <Link to={`/artist_info?id=${album.id}`}>
+               <Link to={`/album/${album.id}`}>
                   <h3>{album.name}</h3>
                   <img className="image_artist" src={album.cover} alt="cover album" />
                </Link>
