@@ -6,7 +6,9 @@ class Artist extends Component{
    constructor(){
       super();
       this.state = {
-         artists: []
+         artists: [],
+         page: 1,
+         nb_all: 0
       }
       this.getArtist();
    }
@@ -20,9 +22,10 @@ class Artist extends Component{
    }*/
 
    getArtist(){
-      axios.get(`http://127.0.0.1:8000/api/artists`).then(res => {
+      axios.get(`http://127.0.0.1:8000/api/artists?page=${this.state.page}`).then(res => {
          return this.setState({
-           artists: res.data["hydra:member"]
+           artists: res.data["hydra:member"],
+           nb_all: res.data["hydra:totalItems"]
          });
       });
    }
@@ -42,12 +45,36 @@ class Artist extends Component{
       })
    }
 
+   nextPage(){
+      if (this.state.page < Math.ceil(this.state.nb_all / 15)){
+         let nb_page = this.state.page + 1;
+         this.setState({
+            page: nb_page
+         }, () => {
+            this.getArtist();
+         })
+      }
+   }
+
+   prevPage(){
+      if (this.state.page > 1){
+         let nb_page = this.state.page - 1;
+         this.setState({
+            page: nb_page
+         }, () => {
+            this.getArtist();
+         })
+      }
+   }
+
    render() {
      
       return (
          <div className="pageArtist">
             <h1>Liste des artiste disponibles dans la plateforme</h1> 
-           
+            <p>Nombre d'artistes trouvés: {this.state.nb_all}</p>
+            <button onClick={this.prevPage.bind(this)}>Prev</button>
+            <button onClick={this.nextPage.bind(this)}>Next</button>
             <div>{this.renderArtist()}</div>
          </div>
       )
