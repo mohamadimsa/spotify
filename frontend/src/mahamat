@@ -1,0 +1,16 @@
+import Genre from './pages/genre/Genre';
+import GenreVision from './pages/genre/GenreVision';
+
+
+
+
+ 
+
+
+<
+          Route exact path="/genre"
+          component={Genre}
+        /> <
+          Route exact path="/genre/:id"
+          component={GenreVision}
+        />

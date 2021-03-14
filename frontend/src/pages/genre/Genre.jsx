@@ -14,7 +14,7 @@ class Genre extends Component{
   
 
    getGenre(){
-      axios.get(`http://127.0.0.1:8001/api/genres`).then(res => {
+      axios.get(`http://127.0.0.1:8000/api/genres`).then(res => {
          return this.setState({
             genre: res.data["hydra:member"]
          });

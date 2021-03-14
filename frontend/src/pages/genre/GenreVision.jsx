@@ -21,7 +21,7 @@ class GenreVision extends Component{
             });
             
         });*/
-        axios.get(`http://127.0.0.1:8001/api/albums?page=${this.state.page}`).then(res => {
+        axios.get(`http://127.0.0.1:8000/api/albums?page=${this.state.page}`).then(res => {
             this.setState({
             albums: res.data["hydra:member"],
             nb_all: res.data["hydra:totalItems"]
